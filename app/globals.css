@@ -19,3 +19,89 @@ body {
 section[id] {
   scroll-margin-top: 80px;
 }
+
+/* ---------- animations ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--d, 0ms);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: currentColor;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fadeUp 0.8s ease both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes fadeInLine {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.line-in {
+  animation: fadeInLine 0.3s ease both;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(24px, -32px);
+  }
+}
+.blob {
+  animation: float 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .fade-up,
+  .line-in,
+  .blob,
+  .caret {
+    animation: none;
+  }
+}
